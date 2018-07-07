@@ -33,6 +33,16 @@ def saveFile():
         data=self.textArea.get('1.0',END+'-lc')
         file.write(data)
         file.close()
+#-----------------------------------------------------------------------------
+def find_text():
+    findString = simpledialog.askstring("Find","Enter Text")
+    textData = content_text.get('1.0',END+'-1c')
+    occurs = textData.upper().count(findString.upper())
+    if textData.upper().count(findString.upper()):
+        label1 = messagebox.showinfo("Result",findString + " has " +str(occurs) +" occurences")
+    else:
+        label1 = messagebox.showinfo("Result","No match found")        
+        
 #------------------------------------------------
 def exit_():
     if messagebox.showinfo("quit","Are you sure you want to exit"):
@@ -109,7 +119,7 @@ menu.add_cascade(label="File",menu=fileMenu)
 fileMenu.add_command(label="New",command=newFile)
 fileMenu.add_command(label="open",command=openFile)
 fileMenu.add_command(label="Save",command=saveFile)
-fileMenu.add_command(label="print")
+fileMenu.add_command(label="print",command=find_text)
 fileMenu.add_separator()
 fileMenu.add_command(label="Exit",command=exit_)
 #----------------------------------------------------------------------------------------------
